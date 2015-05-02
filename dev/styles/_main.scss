@@ -59,18 +59,14 @@ footer [class^="col-"] {
 article a.wrap {
 	display: block;
 	color: $hsl_L100;
-
-	// pointer-events: none;
-
 }
 
 article a.wrap h2 {
 	display: inline-block;
 }
 
-article a.wrap:hover h2 {
-	// opacity: 0.5;
-	color: blue;
+article a.wrap:hover {
+	opacity: 0.5;
 }
 
 
