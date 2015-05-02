@@ -1,0 +1,111 @@
+!!!
+/[if IE 9] <html class="ie9" lang="en">
+<!--[if gt IE 9]><!-->
+%html{:lang => "en"}<>
+	<!--<![endif]-->
+
+	= Haml::Engine.new(File.read("dev/haml/partials/_doc_head.haml")).render
+
+	%body
+
+		%header.row{"data-columns" => "single"}
+
+			%img{:src => "assets/img/cock.png", :alt => ""}
+			%h1.visuallyhidden Site Name
+
+			%article#welcome.welcome
+				.wrap
+					%h2 A Gift From the Gods.
+					%p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+
+			%article#apollo.apollo
+				.wrap
+					%h2 We Are Apollo Arms
+					%p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					.signature
+						%h6 Tyler Dunford
+						%p President / Founder
+						%p Chief Designer
+
+		%main{:role => "main"}
+
+			.row.clearfix{"data-columns" => "multiple"}
+
+				-# if 2 columns, resize first 2 elements then last 2 elements
+
+				%article#what-we-do.special.spec_what
+					.wrap
+						%h2 What We Do
+						%p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+				%article#proj_farts.project.project-1
+					%a.wrap{:href => "#", :title => ""}
+						%h2 Project Title
+						%p Here is a brief description of the project.
+
+				%article#proj_love.project.project-2
+					%a.wrap{:href => "#", :title => ""}
+						%h2 Project Title Blurp
+						%p Here is a brief description of the project. This particular item has a longer description.
+
+				%article#proj_hate.project.project-3
+					%a.wrap{:href => "#", :title => ""}
+						%h2 Another Project
+						%p Here is a brief description of the project.
+
+			.row.clearfix{"data-columns" => "multiple"}
+
+				-# if 2 columns, resize first 2 elements then last 2 elements
+
+				%article#proj_boobs.project.project-4
+					%a.wrap{:href => "#", :title => ""}
+						%h2 Expanding Horizon
+						%p It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
+
+				%article#services.special.spec_services
+					.wrap
+						%h2 Services We Offer
+						%p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+
+				%article#proj_blurp.project.project-5
+					%a.wrap{:href => "#", :title => ""}
+						%h2 Another Project
+						%p Here is a brief description of the project.
+
+				%article#proj_cocks.project.project-6
+					%a.wrap{:href => "#", :title => ""}
+						%h2 Another Project
+						%p Here is a brief description of the project.
+
+			.row.clearfix{"data-columns" => "multiple"}
+
+				-# if 2 columns, resize first 2 elements
+
+				%article#proj_fags.project.project-7
+					%a.wrap{:href => "#", :title => ""}
+						%h2 Shitty Ballsac Faggot
+						%p Something that doesnt make sense but is really gay. Also fuck you.
+
+				%article#job.special.spec_job
+					.wrap
+						%h2 Right For the Job
+						%p A place for my penis.
+
+				%article#reach.special.spec_reach
+					.wrap
+						%h2 Reach Us
+						%p Byline.
+
+		%footer.clearfix
+
+			.col-1
+				%p &copy; Apollo Arms. All rights reserved.
+
+			%address.col-2
+				%p
+					%strong Apollo
+				%p 123 Address St.
+				%p Yourcity, ON
+				%p CANADA
+
+		= Haml::Engine.new(File.read("dev/haml/partials/_doc_scripts.haml")).render
