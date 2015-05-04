@@ -8,10 +8,17 @@
 
 	%body
 
-		%header.row{"data-columns" => "single"}
+		%a#toggler.nav_toggler{:href => "#", "data-container" => "width_1024"} TOGGLE ME
 
-			%img{:src => "assets/img/cock.png", :alt => ""}
-			%h1.visuallyhidden Site Name
+		%nav#navigation
+			%ul{"data-container" => "width_1024"}
+				- (1..6).each do |i|
+					%li Menu Item ##{i}
+
+		%header.row.clearfix{"data-columns" => "single", "data-container" => "width_1024"}
+
+			-# %img{:src => "assets/img/logo.png", :alt => ""}
+			-# %h1.visuallyhidden Site Name
 
 			%article#welcome.welcome
 				.wrap
@@ -27,7 +34,7 @@
 						%p President / Founder
 						%p Chief Designer
 
-		%main{:role => "main"}
+		%main{:role => "main", "data-container" => "width_1024"}
 
 			.row.clearfix{"data-columns" => "multiple"}
 
@@ -83,8 +90,8 @@
 
 				%article#proj_fags.project.project-7
 					%a.wrap{:href => "#", :title => ""}
-						%h2 Shitty Ballsac Faggot
-						%p Something that doesnt make sense but is really gay. Also fuck you.
+						%h2 Rama Lama Ding Dong
+						%p Something that doesnt make sense rama lama ding dong. More words are text rama lama ding dong.
 
 				%article#job.special.spec_job
 					.wrap
@@ -96,7 +103,7 @@
 						%h2 Reach Us
 						%p Byline.
 
-		%footer.clearfix
+		%footer.clearfix{"data-container" => "width_1024"}
 
 			.col-1
 				%p &copy; Apollo Arms. All rights reserved.

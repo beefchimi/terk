@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			wpPath = '/wp-content/themes/northman/',
 			ajaxPath = origin === 'http://localhost' ? '' : origin + wpPath;
 
-		ajax.open('GET', ajaxPath + 'assets/img/svg.svg?v=2', true);
+		ajax.open('GET', ajaxPath + 'assets/img/svg.svg?v=1', true);
 		ajax.send();
 		ajax.onload = function(e) {
 
@@ -105,9 +105,28 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function pageLoaded() {
 
-		injectSVG(); // inject them SVGs
+		// injectSVG(); // inject them SVGs
 
 		rowHeight();
+		toggleShit();
+
+	}
+
+
+	// toggleShit: Measure and set .wrap heights
+	// ----------------------------------------------------------------------------
+	function toggleShit() {
+
+		var elToggle = document.getElementById('toggler'),
+			elNav = document.getElementById('navigation');
+
+		elToggle.addEventListener('click', function(e) {
+
+			classie.toggle(elNav, 'toggled');
+
+			e.preventDefault();
+
+		});
 
 	}
 
@@ -116,59 +135,64 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ----------------------------------------------------------------------------
 	function rowHeight() {
 
-		// do not execute if single column
+		// get all '.wrap' elements
+		var arrWraps      = document.getElementsByClassName('wrap'),
+			numWrapsCount = arrWraps.length;
+
+		// if single column: reset '.wrap' height and exit function
 		if (numWindowWidth < 480) {
-			return;
+
+			// reset height to 'auto'
+			for (var a = 0; a < numWrapsCount; a++) {
+				arrWraps[a].style.height = 'auto';
+			}
+
+			return; // tits or gtfo
+
 		}
 
-		var arrRows = document.getElementsByClassName('row');
+		// our variables to track height, position, current element
+		var numCurrentTallest  = 0,
+			numCurrentRowStart = 0,
+			numTopPos          = 0,
+			arrRowChildren     = new Array(),
+			elThisWrap;
 
-		for (var a = 0; a < arrRows.length; a++) {
+		for (var b = 0; b < numWrapsCount; b++) {
 
-			var arrWraps = arrRows[a].getElementsByClassName('wrap'),
-				numTallestHeight = 0;
+			// reference current iteration of '.wrap'
+			elThisWrap = arrWraps[b];
 
-			// check each .wrap for tallest element
-			for (var b = 0; b < arrWraps.length; b++) {
+			// reset height to 'auto'
+			elThisWrap.style.height = 'auto';
 
+			// calculate top offset relative to parent container ('.row' requires position: relative)
+			numTopPos = elThisWrap.getBoundingClientRect().top; // elThisWrap.offsetTop;
 
+			if (numCurrentRowStart != numTopPos) {
 
-
-				if (numWindowWidth < 768) {
-
-					console.log('go fuck yourself');
-
-					var dataColumn = arrRows[a].getAttribute('data-columns');
-
-
-					if (dataColumn === 'multiple') {
-
-						console.log('yes');
-
-					}
-
+				for (var c = 0; c < arrRowChildren.length; c++) {
+					arrRowChildren[c].style.height = numCurrentTallest + 'px';
 				}
 
+				arrRowChildren.length = 0; // empty the array
+				numCurrentRowStart = numTopPos;
+				numCurrentTallest = elThisWrap.offsetHeight;
+				arrRowChildren.push(elThisWrap);
 
+			} else {
 
+				// add this '.wrap' to the row array
+				arrRowChildren.push(elThisWrap);
 
-				if (numTallestHeight < arrWraps[b].offsetHeight ) {
-					numTallestHeight = arrWraps[b].offsetHeight;
-				}
-
-
-
-
+				// compare current numCurrentTallest value against the current '.wrap' iteration's height
+				numCurrentTallest = (numCurrentTallest < elThisWrap.offsetHeight) ? (elThisWrap.offsetHeight) : (numCurrentTallest);
 
 			}
 
-			// now set the style attributes for each .wrap
-			for (var c = 0; c < arrWraps.length; c++) {
-				arrWraps[c].style.height = numTallestHeight + 'px';
+			for (var d = 0; d < arrRowChildren.length; d++) {
+				arrRowChildren[d].style.height = numCurrentTallest + 'px';
 			}
-
-
-
 
 		}
 

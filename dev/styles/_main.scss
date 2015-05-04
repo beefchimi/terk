@@ -8,22 +8,22 @@ html {
 	font-family: 'Source Sans Pro', Futura, 'Trebuchet MS', Arial, sans-serif;
 	background-color: $hsl_L20;
 }
-/*
-body {
-	position: relative;
-}
 ::-moz-selection {
-	background-color: $hsl_L0;
+	color: $hsl_L100;
+	background-color: $hsl_red;
 }
 ::selection {
-	background-color: $hsl_L0;
+	color: $hsl_L100;
+	background-color: $hsl_red;
 }
-*/
 
 // Transitions & Animations
 // ----------------------------------------------------------------------------
-span.nav_toggle {
-	transition: transform 0.2s ease-in-out, opacity 1s ease-in-out;
+a {
+	transition: all 0.3s ease-in-out;
+}
+nav {
+	transition: max-height 0.6s ease-in-out;
 }
 
 // General Styles
@@ -41,35 +41,32 @@ a.wrap_svg svg {
 	width: 100%;
 	height: 100%;
 }
-
-
-article {
+// --- Containers --- \\
+[data-container] {
+	margin-left: auto;
+	margin-right: auto;
 }
-
-
+[data-container="width_1024"] {
+	max-width: 102.4rem;
+}
+// --- Content --- \\
 article .wrap {
 	box-shadow: inset 0 0 0 0.2rem $hsl_L100;
 }
-
-
 article .wrap,
 footer [class^="col-"] {
-	padding: 1rem;
+	padding: 1.2rem 1.6rem;
 }
 article a.wrap {
 	display: block;
 	color: $hsl_L100;
 }
-
 article a.wrap h2 {
 	display: inline-block;
 }
-
 article a.wrap:hover {
 	opacity: 0.5;
 }
-
-
 article .wrap h2 {
 	font-size: 2.8rem;
 	font-weight: 700;
@@ -82,6 +79,40 @@ footer [class^="col-"] p {
 	line-height: 1.4;
 }
 
+// Navigation
+// ----------------------------------------------------------------------------
+nav {
+	max-height: 0rem;
+	overflow-y: hidden;
+	background-color: $hsl_yellow;
+}
+nav.toggled {
+	max-height: 24rem;
+}
+nav ul {
+	padding: 1.2rem 1.6rem;
+}
+nav ul li {
+	margin-bottom: 1rem;
+	font-size: 2.6rem;
+	color: $hsl_L100;
+}
+nav ul li:last-child {
+	margin-bottom: 0;
+}
+// --- Toggle --- \\
+a.nav_toggler {
+	display: block;
+	padding: 1.2rem 1.6rem;
+	font-size: 4rem;
+	color: $hsl_red;
+}
+a.nav_toggler:hover {
+	color: $hsl_yellow;
+}
+a.nav_toggler:active {
+	color: darken($hsl_yellow, 10%);
+}
 
 // Header
 // ----------------------------------------------------------------------------
@@ -98,7 +129,12 @@ article.welcome .wrap {
 article.apollo .wrap {
 	background-color: $hsl_red;
 }
-
+div.signature {
+	margin-top: 1rem;
+}
+div.signature h6 {
+	font-weight: 700;
+}
 
 // Main
 // ----------------------------------------------------------------------------
@@ -109,14 +145,9 @@ main .row article:nth-child(even) .wrap {
 	background-color: $hsl_orange;
 }
 
-
-
 // Footer
 // ----------------------------------------------------------------------------
 footer {
 	color: $hsl_L100;
 	background-color: $hsl_L0;
 }
-
-
-
